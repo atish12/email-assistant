@@ -9,15 +9,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 import streamlit as st
 
 # Load secrets into env vars (Streamlit Cloud stores secrets in st.secrets)
-try:
-    for _key in ["ANTHROPIC_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2",
-                 "LANGCHAIN_ENDPOINT", "LANGCHAIN_PROJECT"]:
-        if _key not in os.environ:
-            _val = st.secrets.get(_key)
-            if _val:
-                os.environ[_key] = str(_val)
-except Exception:
-    pass
+for _key in ["ANTHROPIC_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2",
+             "LANGCHAIN_ENDPOINT", "LANGCHAIN_PROJECT"]:
+    if _key not in os.environ:
+        try:
+            os.environ[_key] = str(st.secrets[_key])
+        except KeyError:
+            pass
 import streamlit.components.v1 as components
 from fpdf import FPDF
 
