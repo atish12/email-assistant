@@ -12,7 +12,8 @@ def call_claude(
     model: str = DEFAULT_MODEL,
     fallback_model: str | None = None,
 ) -> str:
-    client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    api_key = (os.environ.get("ANTHROPIC_API_KEY") or "").strip() or None
+    client = anthropic.Anthropic(api_key=api_key)
 
     def _call(m: str) -> str:
         response = client.messages.create(

@@ -190,8 +190,13 @@ with tab_generate:
         if errors:
             for msg in errors:
                 st.warning(msg)
-        elif not os.environ.get("ANTHROPIC_API_KEY"):
-            st.error("ANTHROPIC_API_KEY is not set. Add it via Streamlit Cloud Secrets or your .env file.")
+        elif not (os.environ.get("ANTHROPIC_API_KEY") or "").strip():
+            key_in_secrets = "ANTHROPIC_API_KEY" in st.secrets if hasattr(st, "secrets") else False
+            st.error(
+                f"ANTHROPIC_API_KEY is not set. "
+                f"Found in st.secrets: {key_in_secrets}. "
+                f"Add it via Streamlit Cloud Secrets or your .env file."
+            )
         else:
             with st.spinner("Agents are working on your email…"):
                 try:
