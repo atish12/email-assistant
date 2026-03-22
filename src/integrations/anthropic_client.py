@@ -1,10 +1,9 @@
 import os
 import anthropic
-from typing import Optional
 
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
-MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-sonnet-4-6"
 
 
 def call_claude(
@@ -12,11 +11,25 @@ def call_claude(
     user_message: str,
     max_tokens: int = 1024,
     temperature: float = 0.7,
+    model: str = DEFAULT_MODEL,
+    fallback_model: str | None = None,
 ) -> str:
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=max_tokens,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_message}],
-    )
-    return response.content[0].text
+    def _call(m: str) -> str:
+        response = client.messages.create(
+            model=m,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            system=system_prompt,
+            messages=[{"role": "user", "content": user_message}],
+        )
+        for block in response.content:
+            if block.type == "text":
+                return block.text
+        return ""
+
+    try:
+        return _call(model)
+    except anthropic.APIStatusError as e:
+        if fallback_model and fallback_model != model and e.status_code in (429, 529):
+            return _call(fallback_model)
+        raise

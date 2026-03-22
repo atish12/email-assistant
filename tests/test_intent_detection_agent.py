@@ -61,6 +61,36 @@ def test_invalid_json_falls_back_to_other(base_state):
 # Claude receives the right context
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Skip detection when intent already set by user
+# ---------------------------------------------------------------------------
+
+def test_skips_detection_when_intent_already_set(base_state):
+    base_state.intent = "follow_up"
+    with patch(CLAUDE_TARGET) as mock_call:
+        result = intent_detection_agent.run(base_state)
+
+    mock_call.assert_not_called()
+    assert result.intent == "follow_up"
+
+
+def test_runs_detection_when_intent_is_none(base_state):
+    base_state.intent = None
+    with patch(CLAUDE_TARGET, return_value=_response(intent="outreach")) as mock_call:
+        result = intent_detection_agent.run(base_state)
+
+    mock_call.assert_called_once()
+    assert result.intent == "outreach"
+
+
+def test_runs_detection_when_intent_not_in_valid_list(base_state):
+    base_state.intent = "invalid_intent"
+    with patch(CLAUDE_TARGET, return_value=_response(intent="outreach")) as mock_call:
+        result = intent_detection_agent.run(base_state)
+
+    mock_call.assert_called_once()
+
+
 def test_user_message_contains_prompt_and_recipient(base_state):
     base_state.recipient = "Manager"
     base_state.intent_hint = "schedule a meeting"

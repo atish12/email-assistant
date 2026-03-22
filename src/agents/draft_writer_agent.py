@@ -6,7 +6,10 @@ personalization data, and any constraints.
 """
 
 from src.integrations.anthropic_client import call_claude
+from src.integrations.config_loader import get_agent_config
 from src.workflow.state import EmailState
+
+_CFG = get_agent_config("draft_writer")
 
 
 def build_system_prompt(state: EmailState) -> str:
@@ -64,6 +67,6 @@ def run(state: EmailState) -> EmailState:
 Recipient: {state.recipient or 'the recipient'}
 Subject hint: {state.subject_hint or ''}"""
 
-    draft = call_claude(system_prompt, user_message, max_tokens=1024)
+    draft = call_claude(system_prompt, user_message, **_CFG)
     state.draft = draft
     return state

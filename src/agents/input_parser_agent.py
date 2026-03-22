@@ -7,7 +7,10 @@ recipient, tone preference, intent hints, and any constraints.
 
 import json
 from src.integrations.anthropic_client import call_claude
+from src.integrations.config_loader import get_agent_config
 from src.workflow.state import EmailState
+
+_CFG = get_agent_config("input_parser")
 
 SYSTEM_PROMPT = """You are an input parsing agent for an AI email assistant.
 Your job is to extract structured information from the user's raw prompt.
@@ -28,7 +31,7 @@ def run(state: EmailState) -> EmailState:
     if state.recipient:
         user_input += f"\nRecipient context: {state.recipient}"
 
-    response = call_claude(SYSTEM_PROMPT, user_input, max_tokens=512)
+    response = call_claude(SYSTEM_PROMPT, user_input, **_CFG)
 
     try:
         parsed = json.loads(response)

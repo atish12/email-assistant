@@ -8,7 +8,10 @@ thank_you, complaint, introduction, or other.
 
 import json
 from src.integrations.anthropic_client import call_claude
+from src.integrations.config_loader import get_agent_config
 from src.workflow.state import EmailState
+
+_CFG = get_agent_config("intent_detection")
 
 INTENTS = [
     "outreach",
@@ -43,7 +46,7 @@ def run(state: EmailState) -> EmailState:
 Intent hint: {state.intent_hint or ''}
 Recipient: {state.recipient or 'unknown'}"""
 
-    response = call_claude(SYSTEM_PROMPT, user_message, max_tokens=256)
+    response = call_claude(SYSTEM_PROMPT, user_message, **_CFG)
 
     try:
         result = json.loads(response)

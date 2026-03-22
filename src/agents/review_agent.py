@@ -12,7 +12,10 @@ Returns a pass/fail decision and feedback for retry.
 
 import json
 from src.integrations.anthropic_client import call_claude
+from src.integrations.config_loader import get_agent_config
 from src.workflow.state import EmailState
+
+_CFG = get_agent_config("review")
 
 SYSTEM_PROMPT = """You are a quality review agent for an AI email assistant.
 Review the provided email draft and evaluate it on:
@@ -44,7 +47,7 @@ Email draft to review:
 {state.draft or ''}
 ---"""
 
-    response = call_claude(SYSTEM_PROMPT, user_message, max_tokens=512)
+    response = call_claude(SYSTEM_PROMPT, user_message, **_CFG)
 
     try:
         result = json.loads(response)
