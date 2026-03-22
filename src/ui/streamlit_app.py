@@ -150,15 +150,28 @@ with col2:
         index=0,
     )
 
-generate = st.button("✨ Generate Email", type="primary", use_container_width=True)
+col_gen, col_reset = st.columns([4, 1])
+with col_gen:
+    generate = st.button("✨ Generate Email", type="primary", use_container_width=True)
+with col_reset:
+    if st.button("🔄 Reset", use_container_width=True):
+        for key in ["result", "email_txt", "email_pdf"]:
+            st.session_state.pop(key, None)
+        st.rerun()
 
 # ---------------------------------------------------------------------------
 # Generation — store result in session_state so download buttons survive reruns
 # ---------------------------------------------------------------------------
 
 if generate:
+    errors = []
     if not user_prompt.strip():
-        st.warning("Please describe the email you want to write.")
+        errors.append("Please describe the email you want to write.")
+    if not recipient.strip():
+        errors.append("Please enter a recipient.")
+    if errors:
+        for msg in errors:
+            st.warning(msg)
     elif not os.environ.get("ANTHROPIC_API_KEY"):
         st.error("ANTHROPIC_API_KEY is not set. Add it to your environment before running.")
     else:
