@@ -16,8 +16,8 @@ poetry.toml
 .coverage
 htmlcov/
 
-# Streamlit
-.streamlit/
+# Streamlit secrets (never commit — add via Streamlit Cloud UI)
+.streamlit/secrets.toml
 
 # Environment / secrets
 .env
