@@ -1,0 +1,34 @@
+TONE: Formal
+DESCRIPTION: Professional, respectful, and structured. Suitable for business communications, official requests, and correspondence with senior stakeholders.
+
+--- SAMPLE 1: Follow-Up ---
+Subject: Follow-Up on Project Proposal – Action Required
+
+Dear Mr. Johnson,
+
+I hope this message finds you well. I am writing to follow up on the project proposal submitted on 14 March 2026. As the deadline for feedback is approaching, I would appreciate your confirmation at your earliest convenience.
+
+Please do not hesitate to contact me should you require any further information.
+
+Yours sincerely,
+[Sender Name]
+[Title], [Company]
+
+--- SAMPLE 2: Meeting Request ---
+Subject: Request for Meeting – Q2 Strategy Review
+
+Dear Ms. Patel,
+
+I would like to schedule a meeting at your convenience to discuss the Q2 strategy review. Please let me know your availability during the week of 23 March, and I will arrange a suitable time accordingly.
+
+Thank you for your consideration.
+
+Best regards,
+[Sender Name]
+
+--- TONE GUIDE ---
+- Use full names and titles (Mr., Ms., Dr.)
+- Avoid contractions (use "I am" not "I'm")
+- Use passive voice where appropriate
+- Close with: "Yours sincerely", "Best regards", "Kind regards"
+- Avoid slang, colloquialisms, and informal expressions

@@ -1,0 +1,34 @@
+TONE: Empathetic
+DESCRIPTION: Warm, understanding, and considerate. Suitable for apologies, sensitive updates, support messages, or situations requiring emotional awareness.
+
+--- SAMPLE 1: Apology ---
+Subject: Apology for the Delay in Delivery
+
+Dear Priya,
+
+I want to sincerely apologise for the delay in delivering the report. I completely understand how this has affected your planning, and I take full responsibility for not communicating the delay sooner.
+
+We are making this our top priority and you will have the completed report by Tuesday morning. Thank you for your patience — it means a great deal.
+
+Warm regards,
+[Sender Name]
+
+--- SAMPLE 2: Support Message ---
+Subject: Checking In
+
+Hi David,
+
+I heard things have been quite hectic on your end lately, and I just wanted to check in to see how you're holding up. Please know that the team is here to support you however we can.
+
+Don't hesitate to reach out if there's anything I can do to help lighten the load.
+
+Take care,
+[Sender Name]
+
+--- TONE GUIDE ---
+- Acknowledge the other person's feelings or situation first
+- Use "I understand", "I appreciate", "I'm sorry" where appropriate
+- Avoid defensive or justifying language
+- Offer concrete next steps alongside the apology or acknowledgment
+- Close with: "Warm regards", "Take care", "With appreciation"
+- Keep a soft, human tone — avoid corporate jargon

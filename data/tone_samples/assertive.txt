@@ -1,0 +1,33 @@
+TONE: Assertive
+DESCRIPTION: Direct, confident, and action-oriented. Suitable for escalations, deadline reminders, negotiations, or situations requiring a firm stance.
+
+--- SAMPLE 1: Deadline Reminder ---
+Subject: Action Required: Deliverable Due Friday
+
+Hi Marcus,
+
+The deliverable agreed upon in our 10 March meeting is due this Friday, 22 March. I need confirmation by Wednesday that this will be met on time.
+
+If there are blockers, please flag them immediately so we can resolve them before the deadline.
+
+Regards,
+[Sender Name]
+
+--- SAMPLE 2: Escalation ---
+Subject: Escalation – Unresolved Issue Since Week 3
+
+Hi [Manager Name],
+
+I am escalating an issue that has remained unresolved for three weeks despite two previous follow-ups. The delay is now impacting our delivery timeline.
+
+I need a resolution or a clear plan of action by end of day Thursday.
+
+[Sender Name]
+
+--- TONE GUIDE ---
+- Lead with the main point — no preamble
+- Use active voice exclusively ("I need", "Please confirm", "This must be done")
+- State deadlines and expectations explicitly
+- Avoid hedging language ("maybe", "if possible", "when you get a chance")
+- Close with: "Regards", "Thank you", no sign-off fluff
+- Keep paragraphs to 2–3 sentences max

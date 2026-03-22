@@ -1,0 +1,56 @@
+# MCP (Model Control Plane) Configuration
+# Controls model selection, routing, and fallback behaviour
+
+model:
+  primary: claude-sonnet-4-6        # Main model used for all agents
+  fallback: claude-haiku-4-5        # Used when primary is unavailable or over rate limit
+  provider: anthropic
+
+routing:
+  strategy: single                  # Options: single | round-robin | cost-optimised
+  max_retries: 2                    # Max draft retry attempts before accepting best result
+  timeout_seconds: 30               # Per-agent call timeout
+
+agents:
+  input_parser:
+    model: claude-haiku-4-5         # Lightweight model — simple extraction task
+    max_tokens: 512
+    temperature: 0.0
+
+  intent_detection:
+    model: claude-haiku-4-5         # Lightweight model — classification task
+    max_tokens: 256
+    temperature: 0.0
+
+  tone_stylist:
+    model: null                     # No LLM call — pure rule-based lookup
+    max_tokens: 0
+
+  personalization:
+    model: null                     # No LLM call — reads from JSON profile store
+    max_tokens: 0
+
+  draft_writer:
+    model: claude-sonnet-4-6        # Primary model — main generation task
+    max_tokens: 1024
+    temperature: 0.7
+
+  review:
+    model: claude-sonnet-4-6        # Primary model — nuanced evaluation
+    max_tokens: 512
+    temperature: 0.2
+
+  router:
+    model: null                     # No LLM call — rule-based routing logic
+    max_tokens: 0
+
+memory:
+  backend: json                     # Options: json | redis | mongodb
+  profiles_path: src/memory/user_profiles.json
+  drafts_log_path: data/drafts_log.json
+  max_draft_logs: 50
+
+logging:
+  level: INFO                       # Options: DEBUG | INFO | WARNING | ERROR
+  log_agent_calls: true
+  log_token_usage: false

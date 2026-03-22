@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing (cache only — tests/ itself is needed by the tester build stage)
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Memory / persistent data (will be created at runtime)
+src/memory/*.json
+
+# Docs
+docs/
+
+# Environment files (use --env-file or -e flags instead)
+.env
+*.env
+
+# Logs
+*.log

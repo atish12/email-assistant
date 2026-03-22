@@ -1,0 +1,39 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Poetry local config (but keep poetry.lock — needed for reproducible Docker builds)
+poetry.toml
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Streamlit
+.streamlit/
+
+# Environment / secrets
+.env
+*.env
+
+# Runtime data — not source code
+src/memory/*.json
+data/drafts_log.json
+
+# PDF files
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
