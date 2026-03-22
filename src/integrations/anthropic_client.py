@@ -1,8 +1,6 @@
 import os
 import anthropic
 
-client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
-
 DEFAULT_MODEL = "claude-sonnet-4-6"
 
 
@@ -14,6 +12,8 @@ def call_claude(
     model: str = DEFAULT_MODEL,
     fallback_model: str | None = None,
 ) -> str:
+    client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
     def _call(m: str) -> str:
         response = client.messages.create(
             model=m,

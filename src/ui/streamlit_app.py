@@ -7,6 +7,12 @@ import base64
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 import streamlit as st
+
+# Load secrets into env vars (Streamlit Cloud stores secrets in st.secrets)
+for _key in ["ANTHROPIC_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2",
+             "LANGCHAIN_ENDPOINT", "LANGCHAIN_PROJECT"]:
+    if _key not in os.environ and _key in st.secrets:
+        os.environ[_key] = st.secrets[_key]
 import streamlit.components.v1 as components
 from fpdf import FPDF
 
