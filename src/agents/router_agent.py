@@ -13,8 +13,9 @@ from src.agents.personalization_agent import load_profiles, save_profile
 
 MAX_RETRIES = 2
 
-DRAFTS_LOG_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "..", "data", "drafts_log.json"
+DRAFTS_LOG_PATH = os.environ.get(
+    "DRAFTS_LOG_PATH",
+    os.path.join(os.path.dirname(__file__), "..", "..", "data", "drafts_log.json"),
 )
 
 
