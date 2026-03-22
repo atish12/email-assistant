@@ -12,7 +12,14 @@ def call_claude(
     model: str = DEFAULT_MODEL,
     fallback_model: str | None = None,
 ) -> str:
-    client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        try:
+            import streamlit as st
+            api_key = st.secrets.get("ANTHROPIC_API_KEY")
+        except Exception:
+            pass
+    client = anthropic.Anthropic(api_key=api_key)
 
     def _call(m: str) -> str:
         response = client.messages.create(

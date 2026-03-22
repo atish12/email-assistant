@@ -9,10 +9,15 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 import streamlit as st
 
 # Load secrets into env vars (Streamlit Cloud stores secrets in st.secrets)
-for _key in ["ANTHROPIC_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2",
-             "LANGCHAIN_ENDPOINT", "LANGCHAIN_PROJECT"]:
-    if _key not in os.environ and _key in st.secrets:
-        os.environ[_key] = st.secrets[_key]
+try:
+    for _key in ["ANTHROPIC_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2",
+                 "LANGCHAIN_ENDPOINT", "LANGCHAIN_PROJECT"]:
+        if _key not in os.environ:
+            _val = st.secrets.get(_key)
+            if _val:
+                os.environ[_key] = str(_val)
+except Exception:
+    pass
 import streamlit.components.v1 as components
 from fpdf import FPDF
 
@@ -188,7 +193,7 @@ with tab_generate:
             for msg in errors:
                 st.warning(msg)
         elif not os.environ.get("ANTHROPIC_API_KEY"):
-            st.error("ANTHROPIC_API_KEY is not set. Add it to your environment before running.")
+            st.error("ANTHROPIC_API_KEY is not set. Add it via Streamlit Cloud Secrets or your .env file.")
         else:
             with st.spinner("Agents are working on your email…"):
                 try:
